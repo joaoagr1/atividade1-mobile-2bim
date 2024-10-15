@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'dart:convert';
 import 'banco.dart';
-import 'dart:convert'; 
 import 'form.dart';
+
 class ListScreen extends StatefulWidget {
   @override
   _ListScreenState createState() => _ListScreenState();
@@ -18,15 +19,24 @@ class _ListScreenState extends State<ListScreen> {
   }
 
   void _fetchClientes() async {
-    String response = await _api.getAll();
-    setState(() {
-      _clientes = jsonDecode(response);
-    });
+    try {
+      String response = await _api.getAll();
+      print('Response from API: $response'); // Adiciona um log para verificar a resposta da API
+      setState(() {
+        _clientes = jsonDecode(response);
+      });
+    } catch (e) {
+      print('Error fetching clients: $e'); // Adiciona um log para capturar erros
+    }
   }
 
   void _deleteCliente(String id) async {
-    await _api.delete(id);
-    _fetchClientes();
+    try {
+      await _api.delete(id);
+      _fetchClientes();
+    } catch (e) {
+      print('Error deleting client: $e'); // Adiciona um log para capturar erros
+    }
   }
 
   @override

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'form.dart'; 
-import 'list.dart'; 
+import 'list.dart';
+import 'form.dart';
 
 void main() {
   runApp(const MyApp());
