@@ -39,4 +39,11 @@ abstract class AbstractApi {
     return response.body;
   }
 
+
+  Future<String> delete(String id) async {
+    var response = await http.delete(Uri.parse("$urlLocalhost/$_recurso/$id"));
+    return response.body;
+  }
+
+
 }
